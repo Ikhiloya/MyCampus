@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewLecture"></activity>
+        <activity android:name=".NewLecture"
+            android:label="My Lectures"/>
+        <activity android:name=".RecordActivity"></activity>
     </application>
 
 </manifest>

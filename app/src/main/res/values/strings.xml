@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">MyCampus</string>
+    <string name="app_name">WenaHub</string>
     <string name="action_settings">Settings</string>
+    <string name="lecturer">Lecturer</string>
+    <string name="venue">Venue</string>
+    <string name="course_code">Course Code</string>
+    <string name="course_title">Course Title</string>
+    <string name="new_lecture">New Lecture</string>
+    <string name="recording_started">Recording Started</string>
 </resources>
