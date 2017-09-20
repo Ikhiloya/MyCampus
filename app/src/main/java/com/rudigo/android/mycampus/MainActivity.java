@@ -16,16 +16,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView1;
     private RecyclerView recyclerView2;
-    private RecyclerView.Adapter adapter;
+    private RecyclerView adapter;
 
-    private List<Lecture> lectures;
+    private ArrayList<Lecture> lectures;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
