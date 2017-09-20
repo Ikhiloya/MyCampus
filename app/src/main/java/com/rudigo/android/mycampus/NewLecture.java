@@ -84,7 +84,7 @@ public class NewLecture extends AppCompatActivity implements TimePickerDialog.On
             openTimePicker();
             alarmMon.setVisibility(View.VISIBLE);
             alarmMon.setText(hour+":"+minuteOfHour);
-            setAlarm();
+
         }
 
         if (view==tue){
