@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lectures_timetable"
+            android:title="Lectures Timetable" />
+
+                <item
+                    android:id="@+id/nav_lecture_notes"
+                    android:title="Lecture Notes" />
+                <item
+                    android:id="@+id/nav_lecture_recording"
+                    android:title="Lecture Recording" />
+                <item
+                    android:id="@+id/nav_invite_coursemates"
+                    android:title="Invite Course-mates" />
+                <item
+                    android:id="@+id/nav_notifications"
+                    android:title="Notifications" />
+
+
+
+
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Log Out" />
+
+        </menu>
+    </item>
+
+</menu>
