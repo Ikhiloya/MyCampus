@@ -7,4 +7,10 @@
     <string name="course_title">Course Title</string>
     <string name="new_lecture">New Lecture</string>
     <string name="recording_started">Recording Started</string>
+    <string name="convert_to_text">Convert To Text</string>
+    <string name="listen_to_it_now">Listen To it Now</string>
+    <string name="osoke_auditorium">Osoke Auditorium</string>
+    <string name="introduction_to_business_mathematics">Introduction to Business Mathematics</string>
+    <string name="mth_101">MTH 101</string>
+    <string name="time">20 min</string>
 </resources>

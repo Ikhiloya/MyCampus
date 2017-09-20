@@ -4,12 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView1;
+    private RecyclerView recyclerView2;
+    private RecyclerView.Adapter adapter;
+
+    private List<Lecture> lectures;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +40,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        recyclerView1 = (RecyclerView)findViewById(R.id.recycler1);
+        recyclerView2 = (RecyclerView)findViewById(R.id.recycler2);
+
+        recyclerView1.setHasFixedSize(true);
+        recyclerView2.setHasFixedSize(true);
+
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+
+        lectures = new ArrayList<>();
+
+        //TODO: Do Other Stuff
+
+
     }
 
     @Override

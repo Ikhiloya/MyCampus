@@ -3,6 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="16dp"
     android:orientation="vertical">
 
@@ -35,29 +36,33 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/courseCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MTH 101" />
+                tools:text="@string/mth_101" />
 
             <TextView
+                android:id="@+id/courseTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Introduction to Business Mathematics" />
+                tools:text="@string/introduction_to_business_mathematics" />
 
             <TextView
+                android:id="@+id/venue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Osoke Auditorium" />
+                tools:text="@string/osoke_auditorium" />
 
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/lectureTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="20 min" />
+            tools:text="@string/time" />
     </LinearLayout>
 
 
