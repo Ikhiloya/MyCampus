@@ -19,7 +19,7 @@ public class NewLecture extends AppCompatActivity implements TimePickerDialog.On
     TimePickerDialog timePickerDialog;
     String hour;
     String minuteOfHour;
-    long time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
