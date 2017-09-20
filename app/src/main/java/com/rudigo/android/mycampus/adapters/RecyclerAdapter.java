@@ -1,4 +1,4 @@
-package com.rudigo.android.mycampus;
+package com.rudigo.android.mycampus.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import com.rudigo.android.mycampus.models.Lecture;
+import com.rudigo.android.mycampus.R;
 
-/**
- * Created by user on 9/20/2017.
- */
+import java.util.ArrayList;
+
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private List<Lecture> lectures;
+    private ArrayList<Lecture> lectures;
 
     private Context context;
 
-    public RecyclerAdapter(List<Lecture> lectures, Context context) {
+    public RecyclerAdapter(ArrayList<Lecture> lectures, Context context) {
         this.lectures = lectures;
         this.context = context;
     }
@@ -47,10 +47,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView courseCode;
-        public TextView courseTitle;
-        public TextView venue;
-        public TextView time;
+        private TextView courseCode;
+        private TextView courseTitle;
+        private TextView venue;
+        private TextView time;
 
         public ViewHolder(View itemView) {
             super(itemView);
