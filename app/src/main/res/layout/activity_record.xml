@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <LinearLayout
@@ -131,13 +131,14 @@
         android:background="@drawable/button_background_blue"
         android:src="@drawable/ic_keyboard_voice_black_24dp" />
 
-    <TextView
-        android:id="@+id/time_text"
+
+    <Chronometer
+        android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="12:48"
+        android:gravity="center"
         android:textSize="30sp"
         android:visibility="invisible" />
 
@@ -147,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="1dp"
-        android:text="  minutes  seconds"
+        android:text="minutes  seconds"
         android:textSize="12sp"
         android:visibility="invisible" />
 
@@ -177,8 +178,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/holo_blue_dark"
-        android:drawableRight="@drawable/ic_play_arrow_black_24dp"
         android:drawablePadding="5dp"
+        android:drawableRight="@drawable/ic_play_arrow_black_24dp"
         android:elevation="5dp"
         android:text="@string/listen_to_it_now"
         android:textColor="#fff"

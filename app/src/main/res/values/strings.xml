@@ -13,4 +13,10 @@
     <string name="introduction_to_business_mathematics">Introduction to Business Mathematics</string>
     <string name="mth_101">MTH 101</string>
     <string name="time">20 min</string>
+    <string name="recording_stopped">Recording Stopped</string>
+    <string name="loading">Text Loading...</string>
+    <string name="title_activity_nav_drawer">NavDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
