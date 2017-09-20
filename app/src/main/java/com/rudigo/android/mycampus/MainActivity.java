@@ -14,6 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.couchbase.lite.CouchbaseLiteException;
+import com.couchbase.lite.Database;
+import com.couchbase.lite.Query;
+import com.couchbase.lite.QueryEnumerator;
+import com.couchbase.lite.QueryRow;
+import com.rudigo.android.mycampus.Helper.DatabaseHelper;
+import com.rudigo.android.mycampus.adapters.RecyclerAdapter;
+import com.rudigo.android.mycampus.models.Lecture;
 
 import java.util.ArrayList;
 
@@ -22,7 +32,10 @@ public class MainActivity extends AppCompatActivity
 
     private RecyclerView recyclerView1;
     private RecyclerView recyclerView2;
-    private RecyclerView adapter;
+    RecyclerAdapter adapter;
+    Database database;
+    Toolbar toolbar;
+
 
     private ArrayList<Lecture> lectures;
 
@@ -30,18 +43,63 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        database = DatabaseHelper.getDatabase(getApplicationContext(), DatabaseHelper.LECTURE_DATA);
+
+        geAllNewLectures();
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewLecture.class);
+                startActivity(intent);
+
+            }
+        });
+
+
 
         recyclerView1 = (RecyclerView)findViewById(R.id.recycler1);
-        recyclerView2 = (RecyclerView)findViewById(R.id.recycler2);
-
         recyclerView1.setHasFixedSize(true);
+
+
+    }
+
+    private void geAllNewLectures() {
+
+        recyclerView2 = (RecyclerView)findViewById(R.id.recycler2);
         recyclerView2.setHasFixedSize(true);
 
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView2.setLayoutManager(layoutManager);
 
-        lectures = new ArrayList<>();
+
+        if (database == null)
+            return;
+
+        Query query = database.createAllDocumentsQuery();
+        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS); //ALL_DOCS by id, BY_SEQUENCE by last modified
+
+
+        try {
+            QueryEnumerator result = query.run();
+            lectures = new ArrayList<>();
+
+            for (; result.hasNext(); ) {
+                QueryRow row = result.next();
+                Lecture lecture = Lecture.fromDictionary(row.getDocument().getProperties());
+                lectures.add(lecture);
+            }
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+            Toast.makeText(MainActivity.this, "Get customers info failed", Toast.LENGTH_SHORT).show();
+        }
+        adapter = new RecyclerAdapter(lectures,MainActivity.this);
+        recyclerView2.setAdapter(adapter);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
