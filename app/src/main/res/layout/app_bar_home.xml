@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.rudigo.android.mycampus.MainActivity">
+    tools:context="com.rudigo.android.mycampus.Home">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -54,35 +54,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="monday"
-                        android:textColor="@color/white"
                         android:textAllCaps="true"
+                        android:textColor="@color/white"
                         android:textSize="15sp" />
 
                     <TextView
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="June 29"
                         android:textAllCaps="true"
-                        android:textSize="15sp" />
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
-
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
+    <include layout="@layout/content_home" />
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
-    <include layout="@layout/content_nav_drawer" />
 
 </android.support.design.widget.CoordinatorLayout>

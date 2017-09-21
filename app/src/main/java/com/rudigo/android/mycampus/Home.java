@@ -26,81 +26,44 @@ import com.rudigo.android.mycampus.models.Lecture;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
+public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView1;
-    private RecyclerView recyclerView2;
+    RecyclerView recyclerView2;
     RecyclerAdapter adapter;
     Database database;
-    Toolbar toolbar;
+    // Toolbar toolbar;
 
-    private ArrayList<Lecture> lectures;
+    ArrayList<Lecture> lectures;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_home);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         database = DatabaseHelper.getDatabase(getApplicationContext(), DatabaseHelper.LECTURE_DATA);
+
+        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerUpComing);
+        recyclerView2.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(Home.this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView2.setLayoutManager(layoutManager);
 
         geAllNewLectures();
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RecordActivity.class);
+                Intent intent = new Intent(Home.this, NewLecture.class);
                 startActivity(intent);
 
             }
         });
-
-
-
-        recyclerView1 = (RecyclerView)findViewById(R.id.recycler1);
-        recyclerView1.setHasFixedSize(true);
-
-
-    }
-
-    private void geAllNewLectures() {
-
-        recyclerView2 = (RecyclerView)findViewById(R.id.recycler2);
-        recyclerView2.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView2.setLayoutManager(layoutManager);
-
-
-        if (database == null)
-            return;
-
-        Query query = database.createAllDocumentsQuery();
-        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS); //ALL_DOCS by id, BY_SEQUENCE by last modified
-
-
-        try {
-            QueryEnumerator result = query.run();
-            lectures = new ArrayList<>();
-
-            for (; result.hasNext(); ) {
-                QueryRow row = result.next();
-                Lecture lecture = Lecture.fromDictionary(row.getDocument().getProperties());
-                lectures.add(lecture);
-            }
-        } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Get customers info failed", Toast.LENGTH_SHORT).show();
-        }
-        adapter = new RecyclerAdapter(lectures,MainActivity.this);
-        recyclerView2.setAdapter(adapter);
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -110,6 +73,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -121,7 +85,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-//    @Override
+    @Override
+    protected void onResume() {
+        super.onResume();
+        geAllNewLectures();
+    }
+
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.nav_drawer, menu);
@@ -154,6 +124,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_lecture_notes) {
             // Handle the camera action
         } else if (id == R.id.nav_lecture_recording) {
+            Intent intent = new Intent(Home.this, RecordActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_invite_coursemates) {
 
@@ -168,5 +140,29 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void geAllNewLectures() {
+
+        if (database == null)
+            return;
+
+        Query query = database.createAllDocumentsQuery();
+        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS); //ALL_DOCS by id, BY_SEQUENCE by last modified
+        try {
+            QueryEnumerator result = query.run();
+            lectures = new ArrayList<>();
+
+            for (; result.hasNext(); ) {
+                QueryRow row = result.next();
+                Lecture lecture = Lecture.fromDictionary(row.getDocument().getProperties());
+                lectures.add(lecture);
+            }
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+            Toast.makeText(Home.this, "Get customers info failed", Toast.LENGTH_SHORT).show();
+        }
+        adapter = new RecyclerAdapter(lectures, Home.this);
+        recyclerView2.setAdapter(adapter);
     }
 }
