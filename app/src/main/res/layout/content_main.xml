@@ -9,6 +9,7 @@
     tools:context="com.rudigo.android.mycampus.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
     <android.support.v7.widget.RecyclerView
        android:id="@+id/recycler1"
        android:visibility="gone"

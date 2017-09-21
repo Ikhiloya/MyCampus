@@ -2,6 +2,7 @@ package com.rudigo.android.mycampus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,18 +15,28 @@ import java.util.Calendar;
 public class NewLecture extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, View.OnClickListener {
 
     public static final String TIMEPICKER_TAG = "timepicker";
-    private LinearLayout mon,tue,wed,thurs,fri;
-    private TextView alarmMon,alarmTues,alarmWed,alarmThur,alarmFri;
+    private LinearLayout mon, tue, wed, thurs, fri;
+    private TextView alarmMon, alarmTues, alarmWed, alarmThur, alarmFri;
     TimePickerDialog timePickerDialog;
     String hour;
     String minuteOfHour;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_lecture);
+        toolbar = (Toolbar) findViewById(R.id.newlecture_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("New Lecture");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+
+
         Calendar calendar = Calendar.getInstance();
-        timePickerDialog = TimePickerDialog.newInstance(this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
+        timePickerDialog = TimePickerDialog.newInstance(this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false, false);
 
         if (savedInstanceState != null) {
 
@@ -36,18 +47,18 @@ public class NewLecture extends AppCompatActivity implements TimePickerDialog.On
             }
         }
         // linearLayouts
-        mon = (LinearLayout)findViewById(R.id.linMon);
-        tue = (LinearLayout)findViewById(R.id.linTues);
-        wed = (LinearLayout)findViewById(R.id.linWed);
-        thurs = (LinearLayout)findViewById(R.id.linThur);
-        fri = (LinearLayout)findViewById(R.id.linFri);
+        mon = (LinearLayout) findViewById(R.id.linMon);
+        tue = (LinearLayout) findViewById(R.id.linTues);
+        wed = (LinearLayout) findViewById(R.id.linWed);
+        thurs = (LinearLayout) findViewById(R.id.linThur);
+        fri = (LinearLayout) findViewById(R.id.linFri);
 
         // TextViews
-        alarmMon = (TextView)findViewById(R.id.tv_alarmTimeMon);
-        alarmTues = (TextView)findViewById(R.id.tv_alarmTimeTue);
-        alarmWed = (TextView)findViewById(R.id.tv_alarmTimeWed);
-        alarmThur = (TextView)findViewById(R.id.tv_alarmTimeThur);
-        alarmFri = (TextView)findViewById(R.id.tv_alarmTimeFri);
+        alarmMon = (TextView) findViewById(R.id.tv_alarmTimeMon);
+        alarmTues = (TextView) findViewById(R.id.tv_alarmTimeTue);
+        alarmWed = (TextView) findViewById(R.id.tv_alarmTimeWed);
+        alarmThur = (TextView) findViewById(R.id.tv_alarmTimeThur);
+        alarmFri = (TextView) findViewById(R.id.tv_alarmTimeFri);
 
         mon.setOnClickListener(this);
         tue.setOnClickListener(this);
@@ -74,42 +85,39 @@ public class NewLecture extends AppCompatActivity implements TimePickerDialog.On
         minuteOfHour = String.valueOf(minute);
 
 
-
-
-
     }
 
     @Override
     public void onClick(View view) {
-        if (view==mon){
+        if (view == mon) {
             openTimePicker();
             alarmMon.setVisibility(View.VISIBLE);
-            alarmMon.setText(hour+":"+minuteOfHour);
+            alarmMon.setText(hour + ":" + minuteOfHour);
 
         }
 
-        if (view==tue){
+        if (view == tue) {
             openTimePicker();
             alarmTues.setVisibility(View.VISIBLE);
-            alarmTues.setText(hour+":"+minuteOfHour);
+            alarmTues.setText(hour + ":" + minuteOfHour);
         }
 
-        if (view==wed){
+        if (view == wed) {
             openTimePicker();
             alarmWed.setVisibility(View.VISIBLE);
-            alarmWed.setText(hour+":"+minuteOfHour);
+            alarmWed.setText(hour + ":" + minuteOfHour);
         }
 
-        if (view==thurs){
+        if (view == thurs) {
             openTimePicker();
             alarmThur.setVisibility(View.VISIBLE);
-            alarmThur.setText(hour+":"+minuteOfHour);
+            alarmThur.setText(hour + ":" + minuteOfHour);
         }
 
-        if (view==fri){
+        if (view == fri) {
             openTimePicker();
             alarmFri.setVisibility(View.VISIBLE);
-            alarmFri.setText(hour+":"+minuteOfHour);
+            alarmFri.setText(hour + ":" + minuteOfHour);
         }
 
     }

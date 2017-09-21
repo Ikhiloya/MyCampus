@@ -26,8 +26,21 @@
 
         <activity
             android:name=".NewLecture"
-            android:label="My Lectures" />
-        <activity android:name=".RecordActivity" />
+            android:label="My Lectures"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rudigo.android.mycampus.MainActivity" />
+
+        </activity>
+        <activity
+            android:name=".RecordActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rudigo.android.mycampus.MainActivity" />
+
+        </activity>
 
     </application>
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,10 +47,19 @@ public class RecordActivity extends AppCompatActivity {
 
     boolean isClicked;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+        toolbar = (Toolbar) findViewById(R.id.record_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("My Lectures");
+
+//        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
 
         myChronometer = (Chronometer) findViewById(R.id.chronometer);
 
@@ -75,11 +85,11 @@ public class RecordActivity extends AppCompatActivity {
                     convertButton.setVisibility(View.GONE);
                     listenButton.setVisibility(View.GONE);
 
-                    //change color backgrouund to red
+                    //change color background to red
                     recordButton.setBackground(getResources().getDrawable(R.drawable.button_background_red));
 
                     //change the drawable image
-                    recordButton.setImageResource(R.drawable.ic_settings_voice_black_24dp);
+                    recordButton.setImageResource(R.drawable.ic_mic_off_white_48dp);
 
                     previousLectureButton.setVisibility(View.GONE);
                     recordText.setVisibility(View.VISIBLE);
@@ -115,7 +125,7 @@ public class RecordActivity extends AppCompatActivity {
                     recordButton.setBackground(getResources().getDrawable(R.drawable.button_background_blue));
 
                     //change the drawable image
-                    recordButton.setImageResource(R.drawable.ic_keyboard_voice_black_24dp);
+                    recordButton.setImageResource(R.drawable.ic_mic_none_white_48dp);
                     // isClicked = false;
                     recordButton.setEnabled(false);
 
