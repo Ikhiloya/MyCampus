@@ -28,7 +28,6 @@ public class Lecture extends BaseModel  implements Parcelable {
 
     //implements the constructor of the Parcelable Interface
     public Lecture() {
-        super();
 
     }
 
@@ -42,14 +41,14 @@ public class Lecture extends BaseModel  implements Parcelable {
         this.time = parcel.readLong();
     }
 
-//    public Lecture(String courseCode,String courseTitle, String venue, String lecturer, long time) {
-//        this.courseCode = courseCode;
-//        this.courseCode = courseTitle;
-//        this.venue = venue;
-//        this.lecturer = lecturer;
-//        this.time = time;
-//
-//    }
+    public Lecture(String courseCode,String courseTitle, String venue, String lecturer, long time) {
+        this.courseCode = courseCode;
+        this.courseCode = courseTitle;
+        this.venue = venue;
+        this.lecturer = lecturer;
+        this.time = time;
+
+    }
 
 
     public static final Creator<Lecture> CREATOR = new Creator<Lecture>() {
@@ -77,6 +76,27 @@ public class Lecture extends BaseModel  implements Parcelable {
         parcel.writeString(this.venue);
         parcel.writeString(this.lecturer);
         parcel.writeLong(this.time);
+    }
+
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public void setLecturer(String lecturer) {
+        this.lecturer = lecturer;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public String getId() {
